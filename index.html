@@ -11,8 +11,6 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
-      background: url('Background-Photo.jpg') no-repeat center center/cover;
-      opacity: 0.3;
     }
 
     body::before {
@@ -25,49 +23,45 @@
       opacity: 0.3;
     }
 
+    /* Container to center horizontally */
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 2rem;
     }
 
-    /* Container for accordion headers to align top right */
+    /* Accordion menu container aligned top right */
     .accordion-menu {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.9);
+      top: 15px;
+      right: 15px;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      z-index: 10;
     }
 
+    /* Each accordion block */
     .accordion {
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      margin-top: 3rem; /* to prevent overlapping with fixed menu */
-      padding: 0 0 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .accordion:last-child {
+      border-bottom: none;
     }
 
     .accordion-header {
       background-color: #1e90ff;
       color: white;
-      padding: 0.8rem 1.2rem;
+      padding: 1rem 1.2rem;
       font-size: 1rem;
       font-weight: bold;
       border: none;
-      width: 150px;
+      width: 100%;
       text-align: left;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      border-radius: 5px;
-      user-select: none;
     }
 
     .accordion-header:hover {
@@ -78,32 +72,37 @@
       display: none;
       padding: 1rem 1.5rem;
       border-top: 1px solid #ddd;
-      max-width: 700px;
-      margin: 1rem auto 0 auto;
+      background: white;
+      max-height: 300px;
+      overflow-y: auto;
     }
 
     .accordion-content ul {
       list-style: none;
       padding-left: 1.2rem;
+      margin: 0;
     }
 
     .accordion-content ul li {
       margin-bottom: 0.5rem;
-      position: relative;
-      padding-left: 1.2rem;
     }
 
+    /* Remove arrow from all <strong> elements */
+    .accordion-content ul li strong::before {
+      content: "";
+    }
+
+    /* Restore normal arrow for other list items */
     .accordion-content ul li::before {
       content: "➤ ";
       color: #1e90ff;
-      position: absolute;
-      left: 0;
-      top: 0;
+      margin-right: 0.5rem;
     }
 
-    /* Remove arrow for li elements whose first child is strong */
-    .accordion-content ul li > strong:first-child::before {
-      content: none;
+    /* Remove arrow from strong items */
+    .accordion-content ul li strong::before {
+      content: "";
+      margin-right: 0;
     }
 
     footer {
@@ -134,133 +133,138 @@
       clear: both;
     }
 
+    /* Hide original container content since menu is fixed */
+    .container > :not(.accordion-menu) {
+      margin-top: 250px; /* avoid overlap with fixed menu */
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
-
-  <!-- Accordion headers menu top right -->
-  <div class="accordion-menu">
-    <button class="accordion-header" data-target="about">About Me</button>
-    <button class="accordion-header" data-target="work">Work Experience</button>
-    <button class="accordion-header" data-target="education">Education and Training</button>
-    <button class="accordion-header" data-target="skills">Job Related Skills</button>
-    <button class="accordion-header" data-target="projects">Educational Projects</button>
-    <button class="accordion-header" data-target="references">References</button>
-  </div>
-
   <div class="container">
-    
-    <div id="about" class="accordion">
-      <div class="accordion-content about-me-content">
-        <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
-        <h1>Frehiwot Gerezher</h1>
-        <p><strong>Profession:</strong> ATE Test Engineer</p>
-        <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
-        <p><strong>Phone:</strong> +40 723 605 080</p>
-		<p>
-          I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
-          Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
-          unique blend of theoretical knowledge and practical expertise. From technical 
-          positions in a telecom company to serving as an assistant lecturer at a university 
-          and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
-          abilities to effectively bridge the gap between theory and application. With a strong 
-          foundation in communication engineering, I am eager to contribute more on 
-          various technical environments and involve myself in driving innovative solutions to complex projects. 
-        </p>
+    <nav class="accordion-menu">
+      <div id="about" class="accordion">
+        <button class="accordion-header" data-target="about">About Me</button>
+        <div class="accordion-content about-me-content">
+          <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
+          <h1>Frehiwot Gerezher</h1>
+          <p><strong>Profession:</strong> ATE Test Engineer</p>
+          <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
+          <p><strong>Phone:</strong> +40 723 605 080</p>
+          <p>
+            I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
+            Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
+            unique blend of theoretical knowledge and practical expertise. From technical 
+            positions in a telecom company to serving as an assistant lecturer at a university 
+            and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
+            abilities to effectively bridge the gap between theory and application. With a strong 
+            foundation in communication engineering, I am eager to contribute more on 
+            various technical environments and involve myself in driving innovative solutions to complex projects. 
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div id="work" class="accordion">
-      <div class="accordion-content">
-        <ul>
-          <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
-            <ul>
-              <li>Delivered lectures in Communication Systems and Programming</li>
-              <li>Guided lab sessions, supported student projects</li>
-            </ul>
-          </li>
-          <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
-            <ul>
-              <li>Configured and validated routers and CPEs</li>
-              <li>In-house trainer for technical team</li>
-            </ul>
-          </li>
-          <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
-            <ul>
-              <li>Developed and debugged test programs on UltraFLEX</li>
-              <li>Conducted TTR, GR&R, yield improvement</li>
-            </ul>
-          </li>
-        </ul>
+      <div id="work" class="accordion">
+        <button class="accordion-header" data-target="work">Work Experience</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+              <ul>
+                <li>Delivered lectures in Communication Systems and Programming</li>
+                <li>Guided lab sessions, supported student projects</li>
+              </ul>
+            </li>
+            <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+              <ul>
+                <li>Configured and validated routers and CPEs</li>
+                <li>In-house trainer for technical team</li>
+              </ul>
+            </li>
+            <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
+              <ul>
+                <li>Developed and debugged test programs on UltraFLEX</li>
+                <li>Conducted TTR, GR&R, yield improvement</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div id="education" class="accordion">
-      <div class="accordion-content">
-        <ul>
-          <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
-            <ul>
-              <li>Diploma in VBA/VBT (2022)</li>
-            </ul>
-          </li>
-          <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
-            <ul>
-              <li>CGPA: 3.73/4.0</li>
-            </ul>
-          </li>
-        </ul>
+      <div id="education" class="accordion">
+        <button class="accordion-header" data-target="education">Education and Training</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
+              <ul>
+                <li>Diploma in VBA/VBT (2022)</li>
+              </ul>
+            </li>
+            <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
+              <ul>
+                <li>CGPA: 3.73/4.0</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div id="skills" class="accordion">
-      <div class="accordion-content">
-        <ul>
-          <li><strong>Programming Skills</strong>
-            <ul>
-              <li>C, C++, C#, VBA, Java, Git, Jira</li>
-            </ul>
-          </li>
-          <li><strong>Other Skills</strong>
-            <ul>
-              <li>Network, VM, Electronics, Cooking</li>
-            </ul>
-          </li>
-        </ul>
+      <div id="skills" class="accordion">
+        <button class="accordion-header" data-target="skills">Job Related Skills</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Programming Skills</strong>
+              <ul>
+                <li>C, C++, C#, VBA, Java, Git, Jira</li>
+              </ul>
+            </li>
+            <li><strong>Other Skills</strong>
+              <ul>
+                <li>Network, VM, Electronics, Cooking</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div id="projects" class="accordion">
-      <div class="accordion-content">
-        <ul>
-          <li><strong>Key Projects</strong>
-            <ul>
-              <li>Study of multiple antenna systems in compact MIMO terminals</li>
-              <li>VPN design for Mekelle University using CCNA</li>
-              <li>M-QAM simulation (MATLAB)</li>
-            </ul>
-          </li>
-        </ul>
+      <div id="projects" class="accordion">
+        <button class="accordion-header" data-target="projects">Educational Projects</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Key Projects</strong>
+              <ul>
+                <li>Study of multiple antenna systems in compact MIMO terminals</li>
+                <li>VPN design for Mekelle University using CCNA</li>
+                <li>M-QAM simulation (MATLAB)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div id="references" class="accordion">
-      <div class="accordion-content">
-        <ul>
-          <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
-            <ul>
-              <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
-              <li>Phone: +251-910-863-777</li>
-            </ul>
-          </li>
-          <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
-            <ul>
-              <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
-              <li>Phone: +1 438 925 4987</li>
-            </ul>
-          </li>
-        </ul>
+      <div id="references" class="accordion">
+        <button class="accordion-header" data-target="references">References</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
+              <ul>
+                <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
+                <li>Phone: +251-910-863-777</li>
+              </ul>
+            </li>
+            <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
+              <ul>
+                <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
+                <li>Phone: +1 438 925 4987</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
+
+    <!-- The rest of your page content would go here if any -->
 
     <footer>
       &copy; 2025 Frehiwot Gerezher. All rights reserved.
@@ -268,28 +272,30 @@
   </div>
 
   <script>
-    // Hide all accordion contents initially
-    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
-
     document.querySelectorAll('.accordion-menu .accordion-header').forEach(button => {
       button.addEventListener('click', () => {
         const targetId = button.getAttribute('data-target');
         const targetContent = document.querySelector(`#${targetId} .accordion-content`);
         const isVisible = targetContent.style.display === 'block';
 
-        // Close all contents
+        // Close all accordion contents
         document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
 
-        // Toggle this one
         if (!isVisible) {
           targetContent.style.display = 'block';
+
           setTimeout(() => {
+            // Scroll content into view at top
             targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Scroll up by ~60px after a short delay to add top padding
+            setTimeout(() => {
+              window.scrollBy({ top: -60, behavior: 'smooth' });
+            }, 300);
           }, 100);
         }
       });
     });
   </script>
-
 </body>
 </html>
