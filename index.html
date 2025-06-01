@@ -11,6 +11,7 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
+      background: white;
     }
 
     body::before {
@@ -23,93 +24,43 @@
       opacity: 0.3;
     }
 
-    /* Container to center horizontally */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    /* Accordion menu container aligned top right */
-    .accordion-menu {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      width: 220px;
+    nav.top-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       background: rgba(255, 255, 255, 0.95);
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
 
-    /* Each accordion block */
-    .accordion {
-      border-bottom: 1px solid #ddd;
-    }
-
-    .accordion:last-child {
-      border-bottom: none;
-    }
-
-    .accordion-header {
-      background-color: #1e90ff;
-      color: white;
-      padding: 1rem 1.2rem;
+    nav.top-nav button {
+      background: none;
+      border: none;
       font-size: 1rem;
       font-weight: bold;
-      border: none;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .accordion-header:hover {
-      background-color: #006fce;
-    }
-
-    .accordion-content {
-      display: none;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid #ddd;
-      background: white;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    .accordion-content ul {
-      list-style: none;
-      padding-left: 1.2rem;
-      margin: 0;
-    }
-
-    .accordion-content ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    /* Remove arrow from all <strong> elements */
-    .accordion-content ul li strong::before {
-      content: "";
-    }
-
-    /* Restore normal arrow for other list items */
-    .accordion-content ul li::before {
-      content: "➤ ";
       color: #1e90ff;
-      margin-right: 0.5rem;
+      cursor: pointer;
+      margin: 0 1rem;
     }
 
-    /* Remove arrow from strong items */
-    .accordion-content ul li strong::before {
-      content: "";
-      margin-right: 0;
+    nav.top-nav button:hover {
+      color: #006fce;
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #555;
-      margin-top: 2rem;
+    section {
+      padding: 7rem 2rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    section h1, section h2 {
+      margin-top: 0;
     }
 
     .intro-photo {
@@ -123,179 +74,158 @@
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     }
 
-    h1, p {
-      margin: 0.5rem 0;
+    ul {
+      list-style: none;
+      padding-left: 1rem;
     }
 
-    .about-me-content::after {
+    ul li::before {
+      content: "\27A4 ";
+      color: #1e90ff;
+      margin-right: 0.5rem;
+    }
+
+    ul li strong::before {
       content: "";
-      display: table;
-      clear: both;
+      margin-right: 0;
     }
 
-    /* Hide original container content since menu is fixed */
-    .container > :not(.accordion-menu) {
-      margin-top: 250px; /* avoid overlap with fixed menu */
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+      margin: 2rem 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav class="accordion-menu">
-      <div id="about" class="accordion">
-        <button class="accordion-header" data-target="about">About Me</button>
-        <div class="accordion-content about-me-content">
-          <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
-          <h1>Frehiwot Gerezher</h1>
-          <p><strong>Profession:</strong> ATE Test Engineer</p>
-          <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
-          <p><strong>Phone:</strong> +40 723 605 080</p>
-          <p>
-            I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
-            Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
-            unique blend of theoretical knowledge and practical expertise. From technical 
-            positions in a telecom company to serving as an assistant lecturer at a university 
-            and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
-            abilities to effectively bridge the gap between theory and application. With a strong 
-            foundation in communication engineering, I am eager to contribute more on 
-            various technical environments and involve myself in driving innovative solutions to complex projects. 
-          </p>
-        </div>
-      </div>
+  <nav class="top-nav">
+    <button onclick="scrollToSection('about')">About Me</button>
+    <button onclick="scrollToSection('work')">Work Experience</button>
+    <button onclick="scrollToSection('education')">Education</button>
+    <button onclick="scrollToSection('skills')">Skills</button>
+    <button onclick="scrollToSection('projects')">Projects</button>
+    <button onclick="scrollToSection('references')">References</button>
+  </nav>
 
-      <div id="work" class="accordion">
-        <button class="accordion-header" data-target="work">Work Experience</button>
-        <div class="accordion-content">
-          <ul>
-            <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
-              <ul>
-                <li>Delivered lectures in Communication Systems and Programming</li>
-                <li>Guided lab sessions, supported student projects</li>
-              </ul>
-            </li>
-            <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
-              <ul>
-                <li>Configured and validated routers and CPEs</li>
-                <li>In-house trainer for technical team</li>
-              </ul>
-            </li>
-            <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
-              <ul>
-                <li>Developed and debugged test programs on UltraFLEX</li>
-                <li>Conducted TTR, GR&R, yield improvement</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <section id="about">
+    <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
+    <h1>Frehiwot Gerezher</h1>
+    <p><strong>Profession:</strong> ATE Test Engineer</p>
+    <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
+    <p><strong>Phone:</strong> +40 723 605 080</p>
+    <p>
+      I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
+      Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
+      unique blend of theoretical knowledge and practical expertise. From technical 
+      positions in a telecom company to serving as an assistant lecturer at a university 
+      and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
+      abilities to effectively bridge the gap between theory and application. With a strong 
+      foundation in communication engineering, I am eager to contribute more on 
+      various technical environments and involve myself in driving innovative solutions to complex projects. 
+    </p>
+  </section>
 
-      <div id="education" class="accordion">
-        <button class="accordion-header" data-target="education">Education and Training</button>
-        <div class="accordion-content">
-          <ul>
-            <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
-              <ul>
-                <li>Diploma in VBA/VBT (2022)</li>
-              </ul>
-            </li>
-            <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
-              <ul>
-                <li>CGPA: 3.73/4.0</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <section id="work">
+    <h2>Work Experience</h2>
+    <ul>
+      <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+        <ul>
+          <li>Delivered lectures in Communication Systems and Programming</li>
+          <li>Guided lab sessions, supported student projects</li>
+        </ul>
+      </li>
+      <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+        <ul>
+          <li>Configured and validated routers and CPEs</li>
+          <li>In-house trainer for technical team</li>
+        </ul>
+      </li>
+      <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
+        <ul>
+          <li>Developed and debugged test programs on UltraFLEX</li>
+          <li>Conducted TTR, GR&R, yield improvement</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-      <div id="skills" class="accordion">
-        <button class="accordion-header" data-target="skills">Job Related Skills</button>
-        <div class="accordion-content">
-          <ul>
-            <li><strong>Programming Skills</strong>
-              <ul>
-                <li>C, C++, C#, VBA, Java, Git, Jira</li>
-              </ul>
-            </li>
-            <li><strong>Other Skills</strong>
-              <ul>
-                <li>Network, VM, Electronics, Cooking</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <section id="education">
+    <h2>Education and Training</h2>
+    <ul>
+      <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
+        <ul>
+          <li>Diploma in VBA/VBT (2022)</li>
+        </ul>
+      </li>
+      <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
+        <ul>
+          <li>CGPA: 3.73/4.0</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-      <div id="projects" class="accordion">
-        <button class="accordion-header" data-target="projects">Educational Projects</button>
-        <div class="accordion-content">
-          <ul>
-            <li><strong>Key Projects</strong>
-              <ul>
-                <li>Study of multiple antenna systems in compact MIMO terminals</li>
-                <li>VPN design for Mekelle University using CCNA</li>
-                <li>M-QAM simulation (MATLAB)</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <section id="skills">
+    <h2>Job Related Skills</h2>
+    <ul>
+      <li><strong>Programming Skills</strong>
+        <ul>
+          <li>C, C++, C#, VBA, Java, Git, Jira</li>
+        </ul>
+      </li>
+      <li><strong>Other Skills</strong>
+        <ul>
+          <li>Network, VM, Electronics, Cooking</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-      <div id="references" class="accordion">
-        <button class="accordion-header" data-target="references">References</button>
-        <div class="accordion-content">
-          <ul>
-            <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
-              <ul>
-                <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
-                <li>Phone: +251-910-863-777</li>
-              </ul>
-            </li>
-            <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
-              <ul>
-                <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
-                <li>Phone: +1 438 925 4987</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <section id="projects">
+    <h2>Educational Projects</h2>
+    <ul>
+      <li><strong>Key Projects</strong>
+        <ul>
+          <li>Study of multiple antenna systems in compact MIMO terminals</li>
+          <li>VPN design for Mekelle University using CCNA</li>
+          <li>M-QAM simulation (MATLAB)</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-    <!-- The rest of your page content would go here if any -->
+  <section id="references">
+    <h2>References</h2>
+    <ul>
+      <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
+        <ul>
+          <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
+          <li>Phone: +251-910-863-777</li>
+        </ul>
+      </li>
+      <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
+        <ul>
+          <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
+          <li>Phone: +1 438 925 4987</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
 
-    <footer>
-      &copy; 2025 Frehiwot Gerezher. All rights reserved.
-    </footer>
-  </div>
+  <footer>
+    &copy; 2025 Frehiwot Gerezher. All rights reserved.
+  </footer>
 
   <script>
-    document.querySelectorAll('.accordion-menu .accordion-header').forEach(button => {
-      button.addEventListener('click', () => {
-        const targetId = button.getAttribute('data-target');
-        const targetContent = document.querySelector(`#${targetId} .accordion-content`);
-        const isVisible = targetContent.style.display === 'block';
-
-        // Close all accordion contents
-        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
-
-        if (!isVisible) {
-          targetContent.style.display = 'block';
-
-          setTimeout(() => {
-            // Scroll content into view at top
-            targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            // Scroll up by ~60px after a short delay to add top padding
-            setTimeout(() => {
-              window.scrollBy({ top: -60, behavior: 'smooth' });
-            }, 300);
-          }, 100);
-        }
-      });
-    });
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -70;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
   </script>
 </body>
 </html>
