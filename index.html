@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Frehiwot Gerezher - ATE Test Engineer</title>
   <style>
-    /* Full page background image with overlay */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: url('Background-Photo.jpg') no-repeat center center/cover;
-      opacity: 0.15;
+      opacity: 0.3;
       z-index: -1;
     }
 
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: transparent; /* transparent so background photo shows */
+      margin: 2rem;
+      background-color: transparent;
       color: #333;
       line-height: 1.6;
     }
 
     .container {
       max-width: 800px;
-      margin: 120px auto 2rem; /* margin-top to allow fixed header */
-      background: white;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -35,63 +34,6 @@
       z-index: 1;
     }
 
-    h1 {
-      color: #1e90ff;
-      margin: 0 0 0.5rem 0;
-    }
-
-    /* Fixed accordion headers container */
-    .accordion-nav {
-      position: fixed;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      background: #1e90ff;
-      display: flex;
-      z-index: 1000;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-      overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
-    }
-    .accordion-nav::-webkit-scrollbar {
-      display: none; /* Chrome, Safari */
-    }
-
-    .accordion-header {
-      flex: 1 0 auto;
-      padding: 1rem 1.2rem;
-      cursor: pointer;
-      border: none;
-      background-color: transparent;
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      text-align: center;
-      transition: background-color 0.3s ease;
-      white-space: nowrap;
-      border-bottom: 4px solid transparent;
-    }
-    .accordion-header:hover {
-      background-color: #006fce;
-    }
-    .accordion-header.active {
-      border-bottom: 4px solid #ffdd57; /* highlight active tab */
-      background-color: #005bb5;
-    }
-
-    .accordion-content {
-      display: none;
-      background-color: white;
-      padding: 1rem 1rem 1rem 1rem;
-      border-top: 1px solid #ddd;
-      overflow: auto;
-    }
-    .accordion-content.active {
-      display: block;
-    }
-
-    /* Intro photo inside About Me */
     .intro-photo {
       width: 120px;
       height: 120px;
@@ -101,41 +43,56 @@
       float: right;
       margin-left: 20px;
       margin-bottom: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    /* Remove default bullet points in all lists */
-    ul, ul ul {
+    .intro-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .accordion {
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .accordion-header {
+      background-color: #1e90ff;
+      color: white;
+      cursor: pointer;
+      padding: 1rem;
+      font-weight: bold;
+      border: none;
+      width: 100%;
+      text-align: left;
+      outline: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .accordion-header:hover {
+      background-color: #006fce;
+    }
+
+    .accordion-content {
+      display: none;
+      background-color: white;
+      padding: 1rem;
+      border-top: 1px solid #ddd;
+      overflow: auto;
+    }
+
+    .accordion-content ul {
       list-style: none;
       padding-left: 1.2rem;
     }
-    ul ul {
-      padding-left: 1.5rem;
-    }
 
-    /* Dates styling */
-    .dates {
-      color: #555;
-      font-size: 0.9em;
-      margin-left: 0.5rem;
-    }
-
-    /* Clearfix for floated image */
-    .about-me-content::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Header contact info */
-    header {
-      margin-bottom: 2rem;
-    }
-    header p {
-      margin: 0.2rem 0;
-    }
-    a {
+    .accordion-content ul li::before {
+      content: "➤ ";
       color: #1e90ff;
-      text-decoration: none;
+      margin-right: 0.5rem;
     }
 
     footer {
@@ -143,181 +100,170 @@
       font-size: 0.9em;
       color: #777;
       margin-top: 2rem;
-      user-select: none;
     }
 
-    /* Responsive adjustments */
-    @media(max-width: 850px) {
-      .container, .accordion-nav {
-        width: 95%;
-      }
-      .intro-photo {
-        width: 100px;
-        height: 100px;
-      }
+    a {
+      color: #1e90ff;
+      text-decoration: none;
     }
 
+    .about-me-content::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .about-header {
+      margin-bottom: 1rem;
+    }
+
+    .about-header h1,
+    .about-header p {
+      margin: 0.3rem 0;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <main>
+      <div class="accordion">
+        <button class="accordion-header">About Me</button>
+        <div class="accordion-content about-me-content">
+          <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" id="intro-photo" />
+          <div class="about-header">
+            <h1>Frehiwot Gerezher</h1>
+            <p><strong>Profession:</strong> ATE Test Engineer</p>
+            <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
+            <p><strong>Phone:</strong> +40 723 605 080</p>
+          </div>
+          <p>
+            I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
+            Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
+            unique blend of theoretical knowledge and practical expertise. From technical 
+            positions in a telecom company to serving as an assistant lecturer at a university 
+            and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
+            abilities to effectively bridge the gap between theory and application. With a strong 
+            foundation in communication engineering, I am eager to contribute more on 
+            various technical environments and involve myself in driving innovative solutions to complex projects. 
+          </p>
+        </div>
+      </div>
 
-  <!-- Fixed Accordion Headers Nav -->
-  <nav class="accordion-nav" aria-label="Profile Sections">
-    <button class="accordion-header active" aria-expanded="true" aria-controls="about-me">About Me</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="work-experience">Work Experience</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="education-training">Education and Training</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="job-skills">Job Related Skills</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="edu-projects">Educational Projects</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="references">References</button>
-  </nav>
+      <div class="accordion">
+        <button class="accordion-header">Work Experience</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+              <ul>
+                <li>Delivered lectures in Communication Systems and Programming</li>
+                <li>Guided lab sessions, supported student projects</li>
+                <li>Prepared lab manuals for C++ and Electrical labs</li>
+              </ul>
+            </li>
+            <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+              <ul>
+                <li>Configured and validated routers and CPEs</li>
+                <li>In-house trainer for technical team</li>
+              </ul>
+            </li>
+            <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
+              <ul>
+                <li>Developed and debugged test programs on UltraFLEX</li>
+                <li>Conducted TTR, GR&R, yield improvement</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <div class="container" role="main">
+      <div class="accordion">
+        <button class="accordion-header">Education and Training</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>UltraFlex / UltraFlexPlus customized programming</strong> by Teradyne (2022)
+              <ul>
+                <li>Diploma in VBA/VBT</li>
+              </ul>
+            </li>
+            <li><strong>B.Sc. in Electrical and Computer Engineering</strong> at Mekelle University (2011 - 2016)
+              <ul>
+                <li>CGPA: 3.73/4.0</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <header>
-      <h1>Frehiwot Gerezher</h1>
-      <p><strong>Profession:</strong> ATE Test Engineer</p>
-      <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
-      <p><strong>Phone:</strong> +40 723 605 080</p>
-    </header>
+      <div class="accordion">
+        <button class="accordion-header">Job Related Skills</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Programming and related skills</strong>
+              <ul>
+                <li>C, C#, C++, VBA, Git, Jira, Java</li>
+                <li>Assembly: x8086, 8085, 8051</li>
+              </ul>
+            </li>
+            <li><strong>Other Related Skills</strong>
+              <ul>
+                <li>Network installation and maintenance, computer and VM maintenance, home electronic appliances</li>
+                <li>Cooking traditional foods</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <section id="about-me" class="accordion-content active" tabindex="0" aria-labelledby="about-me-label">
-      <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
-      <p>
-        I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
-        Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
-        unique blend of theoretical knowledge and practical expertise. From technical 
-        positions in a telecom company to serving as an assistant lecturer at a university 
-        and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
-        abilities to effectively bridge the gap between theory and application. With a strong 
-        foundation in communication engineering, I am eager to contribute more on 
-        various technical environments and involve myself in driving innovative solutions to complex projects. 
-      </p>
-    </section>
+      <div class="accordion">
+        <button class="accordion-header">Educational Projects</button>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>BSC Main Projects</strong>
+              <ul>
+                <li>BSc final project: Comparison study of multiple antenna systems in compact MIMO terminals</li>
+                <li>Seminar Project: Design of VPN using CCNA for Mekelle University</li>
+                <li>Semester Project: M-QAM study in digital radio communication (MATLAB)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <section id="work-experience" class="accordion-content" tabindex="0" aria-labelledby="work-experience-label">
-      <ul>
-        <li><strong>Assistant Lecturer</strong> at Aksum University <span class="dates">(2016 - 2017)</span>
+      <div class="accordion">
+        <button class="accordion-header">References</button>
+        <div class="accordion-content">
           <ul>
-            <li>Delivered lectures in Communication Systems and Programming</li>
-            <li>Guided lab sessions, supported student projects</li>
-            <li>Prepared lab manuals for C++ and Electrical labs</li>
+            <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
+              <ul>
+                <li>Instructor and final project advisor, Mekelle University, Tigray, Ethiopia</li>
+                <li>Email: gebrehiwet.gebrekrstos@mu.edu.et or gebrehiwet.lema@uni.lu</li>
+                <li>Tell: +251-910-863-777</li>
+              </ul>
+            </li>
+            <li><strong>Gebrehiwot Tesfay Zeweldi (PhD Candidate at McGill University)</strong>
+              <ul>
+                <li>Former Instructor of Mekelle University, Tigray, Ethiopia</li>
+                <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
+                <li>Tell: +14389254987</li>
+              </ul>
+            </li>
           </ul>
-        </li>
-        <li><strong>Software Engineer</strong> at Ethio-Telecom <span class="dates">(2017 - 2022)</span>
-          <ul>
-            <li>Configured and validated routers and CPEs</li>
-            <li>In-house trainer for technical team</li>
-          </ul>
-        </li>
-        <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne <span class="dates">(2022 - Present)</span>
-          <ul>
-            <li>Developed and debugged test programs on UltraFLEX</li>
-            <li>Conducted TTR, GR&R, yield improvement</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="education-training" class="accordion-content" tabindex="0" aria-labelledby="education-training-label">
-      <ul>
-        <li><strong>UltraFlex / UltraFlexPlus customized programming</strong> by Teradyne <span class="dates">(2022)</span>
-          <ul>
-            <li>Diploma in VBA/VBT</li>
-          </ul>
-        </li>
-        <li><strong>B.Sc. in Electrical and Computer Engineering</strong> at Mekelle University <span class="dates">(2011 - 2016)</span>
-          <ul>
-            <li>CGPA: 3.73/4.0</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="job-skills" class="accordion-content" tabindex="0" aria-labelledby="job-skills-label">
-      <ul>
-        <li><strong>Programming and related skills</strong>
-          <ul>
-            <li>C, C#, C++, VBA, Git, Jira, Java</li>
-            <li>Assembly: x8086, 8085, 8051</li>
-          </ul>
-        </li>
-        <li><strong>Other Related Skills</strong>
-          <ul>
-            <li>Network installation and maintenance, computer and VM maintenance, home electronic appliances</li>
-            <li>Cooking traditional foods</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="edu-projects" class="accordion-content" tabindex="0" aria-labelledby="edu-projects-label">
-      <ul>
-        <li><strong>BSC Main Projects</strong>
-          <ul>
-            <li>BSc final project: Comparison study of multiple antenna systems in compact MIMO terminals</li>
-            <li>Seminar Project: Design of VPN (Virtual Private Network) using CCNA for Mekelle university</li>
-            <li>Semester Project: Comparison study of M-QAM in digital radio communication (using MATLAB)</li>
-          </ul>
-        </li>
-        <li><strong>Other Related Skills</strong>
-          <ul>
-            <li>Network installation and maintenance, computer and VM maintenance, home electronic appliances</li>
-            <li>Cooking traditional foods</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section id="references" class="accordion-content" tabindex="0" aria-labelledby="references-label">
-      <ul>
-        <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
-          <ul>
-            <li>Instructor and final project advisor, Mekelle University, Tigray, Ethiopia</li>
-            <li>Email: gebrehiwet.gebrekrstos@mu.edu.et or gebrehiwet.lema@uni.lu</li>
-            <li>Tell: +251-910-863-777</li>
-          </ul>
-        </li>
-        <li><strong>Gebrehiwot Tesfay Zeweldi (PhD Candidate at of McGill University)</strong>
-          <ul>
-            <li>Former Instructor of Mekelle University, Tigray, Ethiopia</li>
-            <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
-            <li>Tell: +14389254987</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
+        </div>
+      </div>
+    </main>
+    <footer>
+      &copy; 2025 Frehiwot Gerezher. All rights reserved.
+    </footer>
   </div>
-
-  <footer>
-    &copy; 2025 Frehiwot Gerezher. All rights reserved.
-  </footer>
-
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const headers = document.querySelectorAll(".accordion-header");
-      const contents = document.querySelectorAll(".accordion-content");
-
-      headers.forEach((header, i) => {
-        header.addEventListener("click", () => {
-          // Remove active from all headers and hide all contents
-          headers.forEach(h => {
-            h.classList.remove("active");
-            h.setAttribute("aria-expanded", "false");
-          });
-          contents.forEach(c => c.classList.remove("active"));
-
-          // Activate clicked header and show corresponding content
-          header.classList.add("active");
-          header.setAttribute("aria-expanded", "true");
-          contents[i].classList.add("active");
-
-          // Scroll container to top for user to see content easily
-          window.scrollTo({top: 0, behavior: 'smooth'});
-        });
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
       });
     });
   </script>
-
 </body>
 </html>
