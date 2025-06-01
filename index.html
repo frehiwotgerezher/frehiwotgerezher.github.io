@@ -11,6 +11,8 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
+      background: url('Background-Photo.jpg') no-repeat center center/cover;
+      opacity: 0.3;
     }
 
     body::before {
@@ -23,75 +25,85 @@
       opacity: 0.3;
     }
 
-    /* Container for page content */
     .container {
       max-width: 1000px;
-      margin: 100px auto 2rem; /* margin-top to leave space for fixed nav */
+      margin: 0 auto;
       padding: 2rem;
     }
 
-    /* === New top navigation bar === */
-    .top-nav {
+    /* Container for accordion headers to align top right */
+    .accordion-menu {
       position: fixed;
-      top: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      border-radius: 0 0 0 10px;
+      top: 1rem;
+      right: 1rem;
       display: flex;
-      gap: 1rem;
-      padding: 0.8rem 1rem;
-      z-index: 1000;
-      font-weight: bold;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
     }
 
-    /* Style accordion headers as nav buttons */
+    .accordion {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      margin-top: 3rem; /* to prevent overlapping with fixed menu */
+      padding: 0 0 1rem 0;
+    }
+
     .accordion-header {
-      background-color: transparent;
-      color: #1e90ff;
-      border: none;
-      padding: 0.5rem 1rem;
+      background-color: #1e90ff;
+      color: white;
+      padding: 0.8rem 1.2rem;
       font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      width: 150px;
+      text-align: left;
       cursor: pointer;
-      transition: color 0.3s ease, background-color 0.3s ease;
-      white-space: nowrap;
+      transition: background-color 0.3s ease;
       border-radius: 5px;
+      user-select: none;
     }
 
     .accordion-header:hover {
-      background-color: #1e90ff;
-      color: white;
+      background-color: #006fce;
     }
 
-    /* Accordion content styling remains the same */
     .accordion-content {
       display: none;
       padding: 1rem 1.5rem;
       border-top: 1px solid #ddd;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      margin-top: 0.5rem;
+      max-width: 700px;
+      margin: 1rem auto 0 auto;
     }
 
     .accordion-content ul {
       list-style: none;
       padding-left: 1.2rem;
-      margin: 0;
     }
 
     .accordion-content ul li {
       margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.2rem;
     }
 
     .accordion-content ul li::before {
       content: "➤ ";
       color: #1e90ff;
-      margin-right: 0.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
-    .accordion-content ul li strong::before {
-      content: "";
+    /* Remove arrow for li elements whose first child is strong */
+    .accordion-content ul li > strong:first-child::before {
+      content: none;
     }
 
     footer {
@@ -126,26 +138,26 @@
 </head>
 <body>
 
-  <!-- Top navigation container for accordion headers -->
-  <nav class="top-nav" role="navigation" aria-label="Main menu">
-    <button class="accordion-header" aria-expanded="false" aria-controls="about-content" id="about-btn">About Me</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="work-content" id="work-btn">Work Experience</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="education-content" id="education-btn">Education and Training</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="skills-content" id="skills-btn">Job Related Skills</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="projects-content" id="projects-btn">Educational Projects</button>
-    <button class="accordion-header" aria-expanded="false" aria-controls="references-content" id="references-btn">References</button>
-  </nav>
+  <!-- Accordion headers menu top right -->
+  <div class="accordion-menu">
+    <button class="accordion-header" data-target="about">About Me</button>
+    <button class="accordion-header" data-target="work">Work Experience</button>
+    <button class="accordion-header" data-target="education">Education and Training</button>
+    <button class="accordion-header" data-target="skills">Job Related Skills</button>
+    <button class="accordion-header" data-target="projects">Educational Projects</button>
+    <button class="accordion-header" data-target="references">References</button>
+  </div>
 
   <div class="container">
-
-    <div id="about" class="accordion" aria-hidden="true">
-      <div id="about-content" class="accordion-content about-me-content" role="region" aria-labelledby="about-btn">
+    
+    <div id="about" class="accordion">
+      <div class="accordion-content about-me-content">
         <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
         <h1>Frehiwot Gerezher</h1>
         <p><strong>Profession:</strong> ATE Test Engineer</p>
         <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
         <p><strong>Phone:</strong> +40 723 605 080</p>
-        <p>
+		<p>
           I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
           Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
           unique blend of theoretical knowledge and practical expertise. From technical 
@@ -158,8 +170,8 @@
       </div>
     </div>
 
-    <div id="work" class="accordion" aria-hidden="true">
-      <div id="work-content" class="accordion-content" role="region" aria-labelledby="work-btn">
+    <div id="work" class="accordion">
+      <div class="accordion-content">
         <ul>
           <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
             <ul>
@@ -183,8 +195,8 @@
       </div>
     </div>
 
-    <div id="education" class="accordion" aria-hidden="true">
-      <div id="education-content" class="accordion-content" role="region" aria-labelledby="education-btn">
+    <div id="education" class="accordion">
+      <div class="accordion-content">
         <ul>
           <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
             <ul>
@@ -200,8 +212,8 @@
       </div>
     </div>
 
-    <div id="skills" class="accordion" aria-hidden="true">
-      <div id="skills-content" class="accordion-content" role="region" aria-labelledby="skills-btn">
+    <div id="skills" class="accordion">
+      <div class="accordion-content">
         <ul>
           <li><strong>Programming Skills</strong>
             <ul>
@@ -217,8 +229,8 @@
       </div>
     </div>
 
-    <div id="projects" class="accordion" aria-hidden="true">
-      <div id="projects-content" class="accordion-content" role="region" aria-labelledby="projects-btn">
+    <div id="projects" class="accordion">
+      <div class="accordion-content">
         <ul>
           <li><strong>Key Projects</strong>
             <ul>
@@ -231,8 +243,8 @@
       </div>
     </div>
 
-    <div id="references" class="accordion" aria-hidden="true">
-      <div id="references-content" class="accordion-content" role="region" aria-labelledby="references-btn">
+    <div id="references" class="accordion">
+      <div class="accordion-content">
         <ul>
           <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
             <ul>
@@ -256,33 +268,28 @@
   </div>
 
   <script>
-    // Accordion toggle logic
-    const buttons = document.querySelectorAll('.accordion-header');
+    // Hide all accordion contents initially
+    document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
 
-    buttons.forEach(button => {
+    document.querySelectorAll('.accordion-menu .accordion-header').forEach(button => {
       button.addEventListener('click', () => {
-        const contentId = button.getAttribute('aria-controls');
-        const content = document.getElementById(contentId);
+        const targetId = button.getAttribute('data-target');
+        const targetContent = document.querySelector(`#${targetId} .accordion-content`);
+        const isVisible = targetContent.style.display === 'block';
 
-        // Close all contents and reset aria-expanded
-        buttons.forEach(btn => {
-          btn.setAttribute('aria-expanded', 'false');
-          document.getElementById(btn.getAttribute('aria-controls')).style.display = 'none';
-          document.getElementById(btn.getAttribute('aria-controls')).parentElement.setAttribute('aria-hidden', 'true');
-        });
+        // Close all contents
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
 
-        // Toggle clicked content
-        const isOpen = button.getAttribute('aria-expanded') === 'true';
-        if (!isOpen) {
-          button.setAttribute('aria-expanded', 'true');
-          content.style.display = 'block';
-          content.parentElement.setAttribute('aria-hidden', 'false');
+        // Toggle this one
+        if (!isVisible) {
+          targetContent.style.display = 'block';
           setTimeout(() => {
-            content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 100);
         }
       });
     });
   </script>
+
 </body>
 </html>
