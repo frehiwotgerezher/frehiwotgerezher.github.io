@@ -53,10 +53,15 @@
     }
 
     section {
+      display: none; /* Hide all sections by default */
       padding: 7rem 2rem 2rem;
       max-width: 1000px;
       margin: 0 auto;
       background: white;
+    }
+
+    section.active {
+      display: block; /* Show active section */
     }
 
     section h1, section h2 {
@@ -219,13 +224,21 @@
 
   <script>
     function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      const selected = document.getElementById(id);
+      if (selected) {
+        selected.classList.add('active');
         const yOffset = -70;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const y = selected.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      scrollToSection('about');
+    });
   </script>
 </body>
 </html>
