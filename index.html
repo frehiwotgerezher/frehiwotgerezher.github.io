@@ -10,39 +10,85 @@
             font-family: Arial, sans-serif;
             color: white;
         }
+
         h2 {
             font-size: 28px;
+            margin-bottom: 20px;
         }
-        ul {
+
+        ul.main-list {
             list-style-type: disc;
-        }
-        ul li > ul {
-            list-style-type: '\27A4'; /* ➤ */
             padding-left: 20px;
+        }
+
+        ul.sub-list {
+            list-style-type: "▶ ";
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 40px;
         }
     </style>
 </head>
 <body>
+
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#experience">Work Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#references">References</a>
+</nav>
+
+<div class="container" id="experience">
     <h2>Work Experience</h2>
-    <ul>
+    <ul class="main-list">
         <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
-            <ul>
+            <ul class="sub-list">
                 <li>Delivered lectures in Communication Systems and Programming</li>
                 <li>Guided lab sessions, supported student projects</li>
             </ul>
         </li>
         <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
-            <ul>
+            <ul class="sub-list">
                 <li>Configured and validated routers and CPEs</li>
                 <li>In-house trainer for technical team</li>
             </ul>
         </li>
         <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
-            <ul>
+            <ul class="sub-list">
                 <li>Developed and debugged test programs on UltraFLEX</li>
                 <li>Conducted TTR, GR&R, yield improvement</li>
             </ul>
         </li>
     </ul>
+</div>
+
 </body>
 </html>
