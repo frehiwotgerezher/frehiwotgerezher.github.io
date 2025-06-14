@@ -11,8 +11,22 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
-      background: url('Background-Photo.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: url('Background-Photo.jpg') no-repeat left center fixed;
+      background-size: 60% 100%;
+      position: relative;
+      overflow-x: hidden;
+      color: #222;
+    }
+    /* Dark overlay on left background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 60vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 0;
     }
 
     nav.top-nav {
@@ -43,20 +57,37 @@
       color: #006fce;
     }
 
+    /* Container to hold sections on right */
+    .content-container {
+      position: fixed;
+      top: 50%;
+      right: 5vw;
+      width: 35vw;
+      max-width: 450px;
+      transform: translateY(-50%);
+      z-index: 5;
+    }
+
     section {
-      display: none;
-      padding: 7rem 2rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
       background: white;
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      display: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
     }
 
     section.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section h1, section h2 {
       margin-top: 0;
+      color: #1e90ff;
     }
 
     .intro-photo {
@@ -73,6 +104,7 @@
     ul {
       list-style: none;
       padding-left: 1rem;
+      color: #333;
     }
 
     ul > li {
@@ -103,6 +135,27 @@
       color: #555;
       margin: 2rem 0;
     }
+
+    /* Responsive for smaller screens */
+    @media (max-width: 900px) {
+      html, body {
+        background-size: cover;
+      }
+      body::before {
+        display: none;
+      }
+      .content-container {
+        position: static;
+        width: auto;
+        max-width: 100%;
+        transform: none;
+        margin: 7rem 1rem 2rem;
+      }
+      section {
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -115,110 +168,112 @@
     <button onclick="scrollToSection('references')">References</button>
   </nav>
 
-  <section id="about">
-    <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
-    <h1>Frehiwot Gerezher</h1>
-    <p><strong>Profession:</strong> ATE Test Engineer</p>
-    <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
-    <p><strong>Phone:</strong> +40 723 605 080</p>
-    <p>
-      I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
-      Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
-      unique blend of theoretical knowledge and practical expertise. From technical 
-      positions in a telecom company to serving as an assistant lecturer at a university 
-      and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
-      abilities to effectively bridge the gap between theory and application. With a strong 
-      foundation in communication engineering, I am eager to contribute more on 
-      various technical environments and involve myself in driving innovative solutions to complex projects. 
-    </p>
-  </section>
+  <div class="content-container">
+    <section id="about">
+      <img src="my-photo.jpg" alt="Professional photo of Frehiwot Gerezher" class="intro-photo" />
+      <h1>Frehiwot Gerezher</h1>
+      <p><strong>Profession:</strong> ATE Test Engineer</p>
+      <p><strong>Email:</strong> <a href="mailto:frehiwot.gerezher@gmail.com">frehiwot.gerezher@gmail.com</a></p>
+      <p><strong>Phone:</strong> +40 723 605 080</p>
+      <p>
+        I am a well-skilled and adaptable professional with a BSC degree in Electrical and 
+        Computer Engineering. With a diverse background encompassing roles in both academia and industry, I have cultivated a 
+        unique blend of theoretical knowledge and practical expertise. From technical 
+        positions in a telecom company to serving as an assistant lecturer at a university 
+        and as a Test Engineer (ATE) at Silicon-Service/Teradyne, I have honed my 
+        abilities to effectively bridge the gap between theory and application. With a strong 
+        foundation in communication engineering, I am eager to contribute more on 
+        various technical environments and involve myself in driving innovative solutions to complex projects. 
+      </p>
+    </section>
 
-  <section id="work">
-    <h2>Work Experience</h2>
-    <ul>
-      <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
-        <ul>
-          <li>Delivered lectures in Communication Systems and Programming</li>
-          <li>Guided lab sessions, supported student projects</li>
-        </ul>
-      </li>
-      <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
-        <ul>
-          <li>Configured and validated routers and CPEs</li>
-          <li>In-house trainer for technical team</li>
-        </ul>
-      </li>
-      <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
-        <ul>
-          <li>Developed and debugged test programs on UltraFLEX</li>
-          <li>Conducted TTR, GR&R, yield improvement</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <section id="work">
+      <h2>Work Experience</h2>
+      <ul>
+        <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+          <ul>
+            <li>Delivered lectures in Communication Systems and Programming</li>
+            <li>Guided lab sessions, supported student projects</li>
+          </ul>
+        </li>
+        <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+          <ul>
+            <li>Configured and validated routers and CPEs</li>
+            <li>In-house trainer for technical team</li>
+          </ul>
+        </li>
+        <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
+          <ul>
+            <li>Developed and debugged test programs on UltraFLEX</li>
+            <li>Conducted TTR, GR&R, yield improvement</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
-  <section id="education">
-    <h2>Education and Training</h2>
-    <ul>
-      <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
-        <ul>
-          <li>Diploma in VBA/VBT (2022)</li>
-        </ul>
-      </li>
-      <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
-        <ul>
-          <li>CGPA: 3.73/4.0</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <section id="education">
+      <h2>Education and Training</h2>
+      <ul>
+        <li><strong>UltraFlex / UltraFlexPlus training</strong> by Teradyne
+          <ul>
+            <li>Diploma in VBA/VBT (2022)</li>
+          </ul>
+        </li>
+        <li><strong>B.Sc. in Electrical and Computer Engineering</strong>, Mekelle University (2011 - 2016)
+          <ul>
+            <li>CGPA: 3.73/4.0</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
-  <section id="skills">
-    <h2>Job Related Skills</h2>
-    <ul>
-      <li><strong>Programming Skills</strong>
-        <ul>
-          <li>C, C++, C#, VBA, Java, Git, Jira</li>
-        </ul>
-      </li>
-      <li><strong>Other Skills</strong>
-        <ul>
-          <li>Network, VM, Electronics, Cooking</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <section id="skills">
+      <h2>Job Related Skills</h2>
+      <ul>
+        <li><strong>Programming Skills</strong>
+          <ul>
+            <li>C, C++, C#, VBA, Java, Git, Jira</li>
+          </ul>
+        </li>
+        <li><strong>Other Skills</strong>
+          <ul>
+            <li>Network, VM, Electronics, Cooking</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
-  <section id="projects">
-    <h2>Educational Projects</h2>
-    <ul>
-      <li><strong>Key Projects</strong>
-        <ul>
-          <li>Study of multiple antenna systems in compact MIMO terminals</li>
-          <li>VPN design for Mekelle University using CCNA</li>
-          <li>M-QAM simulation (MATLAB)</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2>Educational Projects</h2>
+      <ul>
+        <li><strong>Key Projects</strong>
+          <ul>
+            <li>Study of multiple antenna systems in compact MIMO terminals</li>
+            <li>VPN design for Mekelle University using CCNA</li>
+            <li>M-QAM simulation (MATLAB)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
-  <section id="references">
-    <h2>References</h2>
-    <ul>
-      <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
-        <ul>
-          <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
-          <li>Phone: +251-910-863-777</li>
-        </ul>
-      </li>
-      <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
-        <ul>
-          <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
-          <li>Phone: +1 438 925 4987</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <section id="references">
+      <h2>References</h2>
+      <ul>
+        <li><strong>Gebrehiwet Gebrekrstos Lema (Ass. Professor)</strong>
+          <ul>
+            <li>Email: gebrehiwet.gebrekrstos@mu.edu.et / gebrehiwet.lema@uni.lu</li>
+            <li>Phone: +251-910-863-777</li>
+          </ul>
+        </li>
+        <li><strong>Gebrehiwot Tesfay Zeweldi (PhD, McGill)</strong>
+          <ul>
+            <li>Email: gebrehiwot.zeweldi@mail.mcgill.ca</li>
+            <li>Phone: +1 438 925 4987</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </div>
 
   <footer>
     &copy; 2025 Frehiwot Gerezher. All rights reserved.
