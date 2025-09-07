@@ -22,11 +22,11 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 40vw;   /* smaller than before */
+      width: 40vw;   /* smaller than 60% */
       height: 100vh;
       background: url('Background-Photo.jpg') no-repeat center center;
       background-size: cover;
-      clip-path: polygon(0 0, 100% 50%, 0 100%); /* right-pointing triangle */
+      clip-path: polygon(0 0, 100% 50%, 0 100%);  /* right-pointing triangle */
       z-index: 0;
     }
 
@@ -58,11 +58,11 @@
       color: #006fce;
     }
 
-    /* Container to hold sections on right, aligned with image */
+    /* Container to hold sections on right */
     .content-container {
       position: fixed;
       top: 55%;
-      left: 45vw;   /* aligned next to triangle */
+      left: 45vw;   /* aligned with triangle */
       width: 45vw;
       max-width: 600px;
       transform: translateY(-50%);
@@ -137,8 +137,22 @@
       margin: 2rem 0;
     }
 
+    /* Triangle text wrap for Work Experience */
+    .triangle-wrap {
+      float: left;
+      width: 40vw;        /* same as triangle */
+      height: 100vh;      /* full height */
+      shape-outside: polygon(0 0, 100% 50%, 0 100%);
+      -webkit-shape-outside: polygon(0 0, 100% 50%, 0 100%);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      shape-margin: 20px; /* padding between text and triangle edge */
+    }
+
     /* Responsive for smaller screens */
     @media (max-width: 900px) {
+      html, body {
+        background-size: cover;
+      }
       body::before {
         display: none;
       }
@@ -152,6 +166,9 @@
       section {
         box-shadow: none;
         border-radius: 0;
+      }
+      .triangle-wrap {
+        display: none;
       }
     }
   </style>
@@ -186,33 +203,34 @@
     </section>
 
     <section id="work">
+      <div class="triangle-wrap"></div>
       <h2>Work Experience</h2>
       <ul>
         <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
           <ul>
             <li>Providing test solutions, developing and debugging test programs (in WS and FT)</li>
-			<li>Offering production support for customer products</li>
-			<li>Conducting Test Time Reduction (TTR), yield improvement and data analyzation for both Standard and RtR wafers</li>
-			<li>Delivering technical support for application and sales teams during NPI (New Product Introduction)</li>
-			<li>Performing test correlation, GR&R, yield improvement, and supporting production process</li>
-			<li>Conducting trainings, test solutions and test program release and troubleshooting to customer</li>
-			<li>Collaborating with design and production engineering teams (DENG and PENG) for product and test program improvements</li>
+            <li>Offering production support for customer products</li>
+            <li>Conducting Test Time Reduction (TTR), yield improvement and data analyzation for both Standard and RtR wafers</li>
+            <li>Delivering technical support for application and sales teams during NPI (New Product Introduction)</li>
+            <li>Performing test correlation, GR&R, yield improvement, and supporting production process</li>
+            <li>Conducting trainings, test solutions and test program release and troubleshooting to customer</li>
+            <li>Collaborating with design and production engineering teams (DENG and PENG) for product and test program improvements</li>
           </ul>
         </li>
-		<li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+        <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
           <ul>
             <li>Configuring and programming Exchange Router, CRT Router, MSAG, MSAN and Customer Premises Equipment</li>
             <li>Remote technical support for on-site technicians</li>
             <li>In-house trainer for technical team</li>
           </ul>
         </li>
-		<li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+        <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
           <ul>
             <li>Delivered lectures in Communication Systems and Programming related courses</li>
             <li>Guiding lab sessions and mentoring student projects</li>
           </ul>
         </li>
-		<li><strong>Computer maintenance and Tender Officer</strong> at  ALTA COMPUTEC PLC (2016)
+        <li><strong>Computer maintenance and Tender Officer</strong> at  ALTA COMPUTEC PLC (2016)
           <ul>
             <li>Maintain Hardware and Software failures of Computers and accessories</li>
             <li>Prepare technical specifications of tender document</li>
@@ -245,16 +263,16 @@
             <li>C, C++, C#, VBA, Java, Git, Jira</li>
           </ul>
         </li>
-		<li><strong>Electronics and circuit related skills</strong>
+        <li><strong>Electronics and circuit related skills</strong>
           <ul>
             <li>Deep understanding of analogue, digital and mixed-signal</li>
-			<li>Expertise in Semiconductor Testing on ATE</li>
+            <li>Expertise in Semiconductor Testing on ATE</li>
           </ul>
         </li>
         <li><strong>Other Skills</strong>
           <ul>
             <li>Excellent management skills</li>
-			<li>Able to work in flexible time scales, and under high load</li>
+            <li>Able to work in flexible time scales, and under high load</li>
           </ul>
         </li>
       </ul>
@@ -269,7 +287,7 @@
             <li>Semiconductor testing (ATE) based projects</li>
           </ul>
         </li>
-		<li><strong>BSc Study related projects</strong>
+        <li><strong>BSc Study related projects</strong>
           <ul>
             <li>Study of multiple antenna systems in compact MIMO terminals</li>
             <li>VPN design for Mekelle University using CCNA</li>
