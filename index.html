@@ -11,17 +11,17 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
-      background: url('Background-Photo.jpg') no-repeat left center fixed;
+      background: url('Background-Photo.jpg') no-repeat right center fixed;
       background-size: 50% 100%; /* background width */
       position: relative;
       overflow-x: hidden;
       color: #222;
     }
-    /* Dark overlay on left background */
+    /* Dark overlay on right background */
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0;
+      top: 0; right: 0;
       width: 60vw;
       height: 100vh;
       background: rgba(0,0,0,0.5);
@@ -57,14 +57,14 @@
       color: #006fce;
     }
 
-    /* Container to hold sections on right */
+    /* Container to hold sections on left */
     .content-container {
       position: relative; /* allow vertical scrolling */
       top: auto;
-      right: auto;
+      left: auto;
       width: 35vw;
       max-width: 450px;
-      margin-left: 12vw; /* align with background image */
+      margin-left: 5vw; /* text stays on the left side */
       z-index: 5;
     }
 
