@@ -11,21 +11,22 @@
       height: 100%;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
-      background: url('Background-Photo.jpg') no-repeat left center fixed;
-      background-size: 60% 100%;
       position: relative;
       overflow-x: hidden;
       color: #222;
     }
-    /* Dark overlay on left background */
+
+    /* Background photo as smaller right-pointing triangle */
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0;
-      width: 60vw;
+      top: 0;
+      left: 0;
+      width: 40vw;   /* smaller than before */
       height: 100vh;
-      background: rgba(0,0,0,0.5);
-      pointer-events: none;
+      background: url('Background-Photo.jpg') no-repeat center center;
+      background-size: cover;
+      clip-path: polygon(0 0, 100% 50%, 0 100%); /* right-pointing triangle */
       z-index: 0;
     }
 
@@ -138,9 +139,6 @@
 
     /* Responsive for smaller screens */
     @media (max-width: 900px) {
-      html, body {
-        background-size: cover;
-      }
       body::before {
         display: none;
       }
