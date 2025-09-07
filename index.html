@@ -12,17 +12,17 @@
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
       background: url('Background-Photo.jpg') no-repeat right center fixed;
-      background-size: 50% 100%; /* background width */
+      background-size: 50% 100%;
       position: relative;
       overflow-x: hidden;
       color: #222;
     }
-    /* Dark overlay on right background */
+    /* Dark overlay on left background */
     body::before {
       content: "";
       position: fixed;
-      top: 0; right: 0;
-      width: 60vw;
+      top: 0; left: 50%;
+      width: 50vw;
       height: 100vh;
       background: rgba(0,0,0,0.5);
       pointer-events: none;
@@ -57,15 +57,16 @@
       color: #006fce;
     }
 
-    /* Container to hold sections on left */
+    /* Container to hold sections on right */
     .content-container {
-      position: relative; /* allow vertical scrolling */
+      position: relative;
       top: auto;
-      left: auto;
+      right: auto;
       width: 35vw;
       max-width: 450px;
-      margin-left: 5vw; /* text stays on the left side */
-      margin-top: 100px; /* push text below header */
+      margin-left: 12vw;
+      margin-top: 100px; /* push content below nav */
+      margin-bottom: 60px; /* space for fixed footer */
       z-index: 5;
     }
 
@@ -131,10 +132,17 @@
     }
 
     footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
       text-align: center;
       font-size: 0.9em;
       color: #555;
-      margin: 2rem 0;
+      padding: 0.5rem;
+      z-index: 10;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
 
     /* Responsive for smaller screens */
@@ -150,7 +158,7 @@
         width: auto;
         max-width: 100%;
         transform: none;
-        margin: 7rem 1rem 2rem;
+        margin: 7rem 1rem 4rem; /* leave space for footer */
       }
       section {
         box-shadow: none;
@@ -194,28 +202,28 @@
         <li><strong>ATE Test Engineer</strong> at Silicon Service / Teradyne (2022 - Present)
           <ul>
             <li>Providing test solutions, developing and debugging test programs (in WS and FT)</li>
-			<li>Offering production support for customer products</li>
-			<li>Conducting Test Time Reduction (TTR), yield improvement and data analyzation for both Standard and RtR wafers</li>
-			<li>Delivering technical support for application and sales teams during NPI (New Product Introduction)</li>
-			<li>Performing test correlation, GR&R, yield improvement, and supporting production process</li>
-			<li>Conducting trainings, test solutions and test program release and troubleshooting to customer</li>
-			<li>Collaborating with design and production engineering teams (DENG and PENG) for product and test program improvements</li>
+            <li>Offering production support for customer products</li>
+            <li>Conducting Test Time Reduction (TTR), yield improvement and data analyzation for both Standard and RtR wafers</li>
+            <li>Delivering technical support for application and sales teams during NPI (New Product Introduction)</li>
+            <li>Performing test correlation, GR&amp;R, yield improvement, and supporting production process</li>
+            <li>Conducting trainings, test solutions and test program release and troubleshooting to customer</li>
+            <li>Collaborating with design and production engineering teams (DENG and PENG) for product and test program improvements</li>
           </ul>
         </li>
-		<li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
+        <li><strong>Software Engineer</strong> at Ethio-Telecom (2017 - 2022)
           <ul>
             <li>Configuring and programming Exchange Router, CRT Router, MSAG, MSAN and Customer Premises Equipment</li>
             <li>Remote technical support for on-site technicians</li>
             <li>In-house trainer for technical team</li>
           </ul>
         </li>
-		<li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
+        <li><strong>Assistant Lecturer</strong> at Aksum University (2016 - 2017)
           <ul>
             <li>Delivered lectures in Communication Systems and Programming related courses</li>
             <li>Guiding lab sessions and mentoring student projects</li>
           </ul>
         </li>
-		<li><strong>Computer maintenance and Tender Officer</strong> at  ALTA COMPUTEC PLC (2016)
+        <li><strong>Computer maintenance and Tender Officer</strong> at  ALTA COMPUTEC PLC (2016)
           <ul>
             <li>Maintain Hardware and Software failures of Computers and accessories</li>
             <li>Prepare technical specifications of tender document</li>
@@ -248,23 +256,23 @@
             <li>C, C++, C#, VBA, Java, Git, Jira</li>
           </ul>
         </li>
-		<li><strong>Electronics and circuit related skills</strong>
+        <li><strong>Electronics and circuit related skills</strong>
           <ul>
             <li>Deep understanding of analogue, digital and mixed-signal</li>
-			<li>Expertise in Semiconductor Testing on ATE</li>
+            <li>Expertise in Semiconductor Testing on ATE</li>
           </ul>
         </li>
         <li><strong>Other Skills</strong>
           <ul>
             <li>Excellent management skills</li>
-			<li>Able to work in flexible time scales, and under high load</li>
+            <li>Able to work in flexible time scales, and under high load</li>
           </ul>
         </li>
       </ul>
     </section>
 
     <section id="projects">
-      <h2>Educational & Work Projects</h2>
+      <h2>Educational Projects</h2>
       <ul>
         <li><strong>Work related projects</strong>
           <ul>
@@ -272,7 +280,7 @@
             <li>Semiconductor testing (ATE) based projects</li>
           </ul>
         </li>
-		<li><strong>BSc Study related projects</strong>
+        <li><strong>BSc Study related projects</strong>
           <ul>
             <li>Study of multiple antenna systems in compact MIMO terminals</li>
             <li>VPN design for Mekelle University using CCNA</li>
